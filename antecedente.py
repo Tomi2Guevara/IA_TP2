@@ -1,7 +1,7 @@
 
 
 class Antecedent():
-    def __init__(self, name, val, type = None):
+    def __init__(self, name, val = None, type = None):
         self.name = name
         self.val = val
         self.type = type

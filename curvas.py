@@ -38,13 +38,19 @@ class Perten():
             return None
 
     def bisect_defuzzify(self, y):
-        # Find the indices where the PDF values are greater than or equal to y
-        indices = np.where(self.curva.pdf(self.x) / self.curva.pdf(self.x).max() >= y)
+        try:
+            # Find the indices where the PDF values are greater than or equal to y
+            indices = np.where(self.curva.pdf(self.x) / self.curva.pdf(self.x).max() >= y)
 
-        # Get the x values corresponding to these indices
-        x_values = self.x[indices]
+            # Get the x values corresponding to these indices
+            x_values = self.x[indices]
 
-        # The defuzzified value is the midpoint of these x values
-        midpoint = (x_values.min() + x_values.max()) / 2
-
-        return midpoint
+            # The defuzzified value is the midpoint of these x values
+            midpoint = (x_values.min() + x_values.max()) / 2
+        except ValueError:
+            if self.curva.pdf(y) / self.curva.pdf(self.x).max() >= 1:
+                midpoint = y
+            else:
+                midpoint = 50
+        finally:
+            return midpoint
