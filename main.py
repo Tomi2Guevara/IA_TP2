@@ -1,5 +1,4 @@
 from curvas import Perten
-from antecedente import Antecedent
 import numpy as np
 from fuzzy import Fuzzy
 
@@ -28,15 +27,16 @@ for j in range(len(days)-2):
         temp_p_Hora[str(i)] = days[j][i]
     for i in range(24):
         if 7 <= temp_p_Hora[str(i)] < 20:
-            tInt = ctrol.solution(temp_p_Hora[str(i)], tInt, 25)
-            #print(tInt)
+            tInt= ctrol.solution(temp_p_Hora[str(i)], tInt, 25)
+            tDia = tInt
+            print(tInt)
 
         elif days[j+1].mean() > 25:
-            tInt = ctrol.solution(temp_p_Hora[str(i)], tInt, 10)
+            tInt = ctrol.solution(temp_p_Hora[str(i)], tInt, 5)
 
         elif days[j+1].mean() < 25:
             tInt = ctrol.solution(temp_p_Hora[str(i)], tInt, 35)
 
-print(tInt)
+print(tDia)
 
 
