@@ -32,16 +32,15 @@ ad = Perten("ad", True, 0, 9, [0, 24], 0, 0.78)
 md = Perten("md", True, 7, 21, [0, 24], 0.1, 0.9)
 ng = Perten("ng", True, 19, 24, [0, 24], 0.22, 1)
 #------------------
-tmin = Perten("c", True, 5, 25, [0, 35], 0, 0.8)
-t= Perten("m", False, 22, 4, [0, 35], 0.5)
-tmax = Perten("a", True, 25, 35, [0, 35], 0.2, 1)
+tmin = Perten("c", True, 5, 28, [5, 40], 0, 0.65)
+tmax = Perten("a", True, 22, 40, [5, 40], 0.35, 1)
 
 tInt = 27
 tInts = [27]
 Apers = []
 tDays = []
 
-ctrol = Fuzzy([neg, zero, pos], [cl, mid, op], [ad, md, ng], [tmin, t, tmax])
+ctrol = Fuzzy([neg, zero, pos], [cl, mid, op], [ad, md, ng], [tmin, tmax])
 
 for j in range(len(days)-1):
 
@@ -76,18 +75,20 @@ plt.title('Fusificador')
 # Add labels for the x and y axes
 plt.xlabel('Tiempo (Hs)')
 plt.ylabel('(u)')
-# plt.plot(tInts, label='Temperatura Interna')
-# plt.legend()
-# #plt.show()
-# plt.plot(unir, label='Temperatura externa', color='red')
-# plt.legend()
-# plt.plot(Apers, label='Apertura', color='orange')
-# plt.legend()
-# plt.show()
-
-ad.plot()
-md.plot()
-ng.plot()
+plt.plot(tInts, label='Temperatura Interna')
+plt.legend()
+#plt.show()
+plt.plot(unir, label='Temperatura externa', color='red')
+plt.legend()
+plt.plot(Apers, label='Apertura', color='orange')
+plt.legend()
 plt.show()
 
+# tmin.plot()
+# tmax.plot()
+# plt.show()
+# ad.plot()
+# md.plot()
+# ng.plot()
+# plt.show()
 
