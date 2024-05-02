@@ -22,9 +22,11 @@ class Fuzzy():
         sc = self.con[0].bisect_defuzzify(c)
         sm = self.con[1].bisect_defuzzify(m)
         sa = self.con[2].bisect_defuzzify(a)
-        aper = (c * sc + m * sm + a * sa) / (c + m + a)
+        if (a+m+c) == 0:
+            aper = 0
+        else:
+            aper = (c * sc + m * sm + a * sa) / (c + m + a)
         aper /= 100
-        tau = (86400 / (5 * (1 + 0.1 * aper)))
-        dvt = (tExt - tInt) / (tau * (1 + 0.1 * aper))
+        dvt = (tExt - tInt) / (17280 * (1 + 0.1 * aper))
         tInt = tInt + dvt * 3600
-        return tInt
+        return tInt, aper*10

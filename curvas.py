@@ -49,8 +49,12 @@ class Perten():
             midpoint = (x_values.min() + x_values.max()) / 2
         except ValueError:
             if self.curva.pdf(y) / self.curva.pdf(self.x).max() >= 1:
-                midpoint = y
+               midpoint = y
+            #elif self.curva.pdf(y) / self.curva.pdf(self.x).max() <= 0:
+                #midpoint = 0
+            #else:
+                #midpoint = 50
             else:
-                midpoint = 50
+                midpoint = 0
         finally:
             return midpoint
