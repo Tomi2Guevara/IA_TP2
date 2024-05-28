@@ -7,17 +7,18 @@ import csv
 import pandas as pd
 #Cargar datos
 
-days = []
-with open('temps.json') as file:
-    data = json.load(file)
-    for i in data:
-        days.append(np.array(i))
+#Crae datos a partir de una onda senoidal
+t = np.linspace(0, 24, 24)
+t = np.sin(0.5*t)
+t1 = t * 5 + 25
+t2 = t * 10 + 30
+t3 = t * 15 + 20
+# t = t + np.random.normal(0, 1, 100)
+days = [t1, t2, t3]
 
-# days = [[10, 9, 9, 9, 10, 10, 11, 11, 27, 28, 28, 29, 29, 30, 31, 31, 30, 30, 30, 29, 29, 28, 28, 27],
-#         [10, 9, 9, 9, 10, 10, 11, 11, 27, 28, 28, 29, 29, 30, 31, 31, 30, 30, 30, 29, 29, 28, 28, 27]]
-# days = [np.array(i) for i in days]
-
-
+# days = [[30, 31, 31, 31, 30, 30, 29, 29, 16, 15, 15, 14, 13, 13, 12, 11, 11, 10, 10, 8, 7, 8, 10, 10],
+#         [30, 31, 31, 31, 30, 30, 29, 29, 16, 15, 15, 14, 13, 13, 12, 11, 11, 10, 10, 8, 7, 8, 10, 10]]
+days = np.array(days)
 #curvas de pertenencia
 
 neg = Perten("n", True, -35, 0,[-35, 35], 0, 0.90)
@@ -32,8 +33,8 @@ ad = Perten("ad", True, 0, 9, [0, 24], 0, 0.78)
 md = Perten("md", True, 7, 21, [0, 24], 0.1, 0.9)
 ng = Perten("ng", True, 19, 24, [0, 24], 0.22, 1)
 #------------------
-tmin = Perten("c", True, 5, 28, [5, 40], 0, 0.65)
-tmax = Perten("a", True, 22, 40, [5, 40], 0.35, 1)
+tmin = Perten("Fría", True, 5, 28, [5, 40], 0, 0.65)
+tmax = Perten("Caliente", True, 22, 40, [5, 40], 0.35, 1)
 
 tInt = 27
 tInts = [27]
@@ -50,9 +51,9 @@ for j in range(len(days)-1):
 
 
         tInts.append(tInt)
-        Apers.append(pAper)
+        Apers.append(pAper*10)
 
-   #print('Temperatura del día:            '+ str(tDia))
+    # print('Temperatura del día:            '+ str(tDia))
     print('Temperatura promedio del día:   ' + str(days[j].mean()))
     print('' +
           '---------------------------------')
@@ -73,22 +74,15 @@ for i in days:
 plt.title('Fusificador')
 
 # Add labels for the x and y axes
-plt.xlabel('Tiempo (Hs)')
-plt.ylabel('(u)')
+plt.xlabel('Hora')
+plt.ylabel('Temperatura')
 plt.plot(tInts, label='Temperatura Interna')
-plt.legend()
-#plt.show()
+# plt.legend()
+# #plt.show()
 plt.plot(unir, label='Temperatura externa', color='red')
 plt.legend()
-plt.plot(Apers, label='Apertura', color='orange')
-plt.legend()
+# plt.plot(Apers, label='Apertura', color='orange')
+# plt.legend()
 plt.show()
 
-# tmin.plot()
-# tmax.plot()
-# plt.show()
-# ad.plot()
-# md.plot()
-# ng.plot()
-# plt.show()
 
