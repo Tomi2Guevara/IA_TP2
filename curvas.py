@@ -46,7 +46,7 @@ class Perten():
             x_values = self.x[indices]
 
             # The defuzzified value is the midpoint of these x values
-            midpoint = (x_values.min() + x_values.max()) / 2
+            midpoint = x_values.max()
         except ValueError:
             if self.curva.pdf(y) / self.curva.pdf(self.x).max() >= 1:
                midpoint = y

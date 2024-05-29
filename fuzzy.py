@@ -41,7 +41,7 @@ class Fuzzy():
             if (a + m + c) == 0:
                 aper = 0
             else:
-                aper = (c * sc + m * sm + a * sa) / (c + m + a)
+                aper = max(sc,sm,sa)
             aper /= 100
             dvt = (tExt - tInt) / (17280 * (1 + 0.1 * aper))
             tInt = tInt + dvt * 3600
@@ -87,7 +87,7 @@ class Fuzzy():
             if (a + m + c) == 0:
                 aper = 0
             else:
-                aper = (c * sc + m * sm + a * sa) / (c + m + a)
+                aper = max(sc, sm, sa)
             aper = aper / 100
             dvt = (tExt - tInt) / (17280 * (1 + 0.1 * aper))
             tInt = tInt + dvt * 3600

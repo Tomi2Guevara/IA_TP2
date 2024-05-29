@@ -73,16 +73,15 @@ for i in days:
 # Add a title
 plt.title('Fusificador')
 
-# Add labels for the x and y axes
-plt.xlabel('Hora')
-plt.ylabel('Temperatura')
-plt.plot(tInts, label='Temperatura Interna')
+# # Add labels for the x and y axes
+# plt.xlabel('Hora')
+# plt.ylabel('Temperatura')
+# plt.plot(tInts, label='Temperatura Interna')
+# # plt.legend()
+#
+# plt.plot(unir, label='Temperatura externa', color='red')
 # plt.legend()
-# #plt.show()
-plt.plot(unir, label='Temperatura externa', color='red')
-plt.legend()
+# plt.show()
 # plt.plot(Apers, label='Apertura', color='orange')
 # plt.legend()
-plt.show()
-
-
+# plt.show()
